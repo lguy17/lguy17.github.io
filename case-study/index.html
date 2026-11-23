@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="JobFinder — a job-search engine that reads ATS APIs directly, scores postings with a local LLM, and delivers a ranked digest before the crowd arrives. An engineering case study by Guy.">
-<title>Guy · JobFinder — reading the job market at the source</title>
+<meta name="description" content="JobFinder: a job-search engine that reads ATS APIs directly, scores postings with an LLM, and delivers a ranked digest before the crowd arrives. A product and engineering case study by Guy Leibu.">
+<title>Guy Leibu · JobFinder: reading the job market at the source</title>
 <!-- Cloudflare Web Analytics -->
 <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "6cc24d25945e4070ab7435696c371921"}'></script>
 <!-- End Cloudflare Web Analytics -->
@@ -12,7 +12,7 @@
 <body>
 <style>
   /* ============================================================
-     TOKENS — light is default, dark redefines, data-theme wins
+     TOKENS: light is default, dark redefines, data-theme wins
      ============================================================ */
   :root {
     --bg:        #F7F5F1;
@@ -358,14 +358,12 @@
 
 <div class="wrap">
 
-  <!-- SWAP-ME: replace "Guy" with full name; add LinkedIn/GitHub links in nav and footer -->
   <header class="site">
-    <div class="who"><b>Guy</b> <span>· product management</span></div>
+    <div class="who"><b>Guy Leibu</b> <span>· product management</span></div>
     <nav>
       <a href="../">← about me</a>
       <a href="mailto:Guyleibu@gmail.com">email</a>
-      <!-- SWAP-ME: <a href="https://linkedin.com/in/YOURHANDLE">linkedin</a>
-                    <a href="https://github.com/YOURHANDLE">github</a> -->
+      <a href="https://www.linkedin.com/in/guy-leibu">linkedin</a>
       <button id="themeBtn" type="button" aria-label="Toggle color theme">theme</button>
     </nav>
   </header>
@@ -374,20 +372,19 @@
   <section class="hero">
     <p class="eyebrow">Case study · JobFinder</p>
     <h1>By the time a job hits LinkedIn, it's days old with hundreds of applicants. <em>I wanted to be upstream of that.</em></h1>
-    <p class="sub prose">So I built JobFinder: it reads the applicant-tracking APIs behind 53 careers pages directly, scores every new posting with a local LLM against my profile, and delivers a ranked digest to Telegram — twice a day, before the crowd arrives.</p>
+    <p class="sub prose">So I built JobFinder: it reads the applicant-tracking APIs behind 68 career boards directly, scores every new posting with an LLM against my profile, and delivers a ranked digest to Telegram twice a day, before the crowd arrives.</p>
 
     <div class="term reveal" id="termBox">
       <div class="term-chrome">
         <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-        <span class="term-title">guy@mac — jobfinder — 92×28</span>
+        <span class="term-title">guy@mac · jobfinder · 92×28</span>
         <button id="replayBtn" type="button">↻ replay</button>
       </div>
       <div class="term-body">
         <pre id="screen" aria-hidden="true"></pre>
         <p class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">
-          Animated terminal: a real JobFinder scan. 53 boards checked in about 4 seconds,
-          most answering HTTP 304 for zero bytes; 5 new matches scored 2–9 out of 10 by a
-          local LLM; digest delivered to Telegram, state saved only after delivery.
+          Animated terminal: a JobFinder scan. 68 boards checked, most answering HTTP 304
+          for zero bytes; 5 new matches scored 2 to 9 out of 10 by an LLM; digest delivered to Telegram, state saved only after delivery.
         </p>
       </div>
     </div>
@@ -398,12 +395,12 @@
     <p class="eyebrow">The insight</p>
     <h2>Careers pages are frontends. Read the API instead.</h2>
     <p class="prose" style="margin-top:18px">
-      Almost every careers page is a thin frontend over an applicant-tracking system — Greenhouse,
-      Lever, Ashby, Workday — each with a <strong>public JSON API designed for exactly this kind of read</strong>.
+      Almost every careers page is a thin frontend over an applicant-tracking system (Greenhouse,
+      Lever, Ashby, Workday), each with a <strong>public JSON API designed for exactly this kind of read</strong>.
       Going to the source means structured postings the moment they publish: no scraping, no HTML
-      parsing, no bot detection — just one small adapter per ATS.
-      Seven adapters now cover 53 companies plus two VC-portfolio network boards,
-      about <strong>4,300 postings per scan</strong>.
+      parsing, no bot detection. Just one small adapter per ATS.
+      Fifteen adapters now read 68 boards, some of them network aggregators that each cover a
+      whole VC portfolio: about <strong>6,000 postings per scan</strong>.
     </p>
   </section>
 
@@ -416,17 +413,20 @@
         <div class="node">txt</div>
         <div class="body">
           <div class="name">companies.txt</div>
-          <div class="desc">53 companies, one line each. Paste a careers URL and the scanner discovers the ATS + token by itself, validates it against the live API, and caches the result.</div>
+          <div class="desc">68 boards, one line each. Paste a careers URL and the scanner discovers the ATS + token by itself, validates it against the live API, and caches the result.</div>
         </div>
       </div>
       <div class="stage reveal">
-        <div class="node">7×</div>
+        <div class="node">15×</div>
         <div class="body">
           <div class="name">ATS adapters</div>
-          <div class="desc">One small adapter per provider — direct boards plus two aggregated VC-network boards that cover companies with no reachable board of their own.</div>
+          <div class="desc">One small adapter per provider: direct company boards, plus aggregators (VC-portfolio networks, Hacker News "Who is hiring") that cover companies with no reachable board of their own.</div>
           <div class="tags">
             <span class="tag">greenhouse</span><span class="tag">lever</span><span class="tag">ashby</span>
-            <span class="tag">comeet</span><span class="tag">workday</span><span class="tag">getro</span><span class="tag">consider</span>
+            <span class="tag">comeet</span><span class="tag">workday</span><span class="tag">bamboohr</span>
+            <span class="tag">recruitee</span><span class="tag">smartrecruiters</span><span class="tag">rippling</span>
+            <span class="tag">teamtailor</span><span class="tag">oraclecloud</span><span class="tag">getro</span>
+            <span class="tag">consider</span><span class="tag">workable</span><span class="tag">hn</span>
           </div>
         </div>
       </div>
@@ -445,17 +445,17 @@
         </div>
       </div>
       <div class="stage reveal">
-        <div class="node">1–10</div>
+        <div class="node">1-10</div>
         <div class="body">
           <div class="name">dual scoring</div>
-          <div class="desc">A fast keyword score against my skills profile, then a local LLM (qwen2.5:14b via Ollama) rates each new match 1–10 with reasoning and red flags. Free, private, provider-swappable.</div>
+          <div class="desc">A fast keyword score against my skills profile, then an LLM (Claude Haiku) rates each new match 1-10 with reasoning and red flags. The provider is one config entry: it ran on a local model before moving to the cloud.</div>
         </div>
       </div>
       <div class="stage reveal">
         <div class="node">✓</div>
         <div class="body">
           <div class="name">delivery-safe state</div>
-          <div class="desc">A job is never marked "seen" until the digest actually arrives. If delivery fails, the next scan re-reports — duplicates are possible, silence is not.</div>
+          <div class="desc">A job is never marked "seen" until the digest actually arrives. If delivery fails, the next scan re-reports. Duplicates are possible, silence is not.</div>
         </div>
       </div>
       <div class="stage reveal">
@@ -463,7 +463,7 @@
         <div class="body">
           <div class="name">outputs</div>
           <div class="desc">Ranked Telegram digest + an interactive bot (/check, /add, /pipeline), a Streamlit dashboard, and an auto-maintained application tracker with follow-up nudges.</div>
-          <div class="tags"><span class="tag">telegram bot</span><span class="tag">streamlit</span><span class="tag">applications.csv</span></div>
+          <div class="tags"><span class="tag">telegram bot</span><span class="tag">streamlit</span><span class="tag">google sheets</span></div>
         </div>
       </div>
     </div>
@@ -483,7 +483,7 @@
         </summary>
         <div class="inner">
           <p><code>seen_jobs.json</code> is written only <em>after</em> <code>deliver_report()</code> returns.
-          If Telegram is down, the process crashes, or the network drops mid-send, nothing is marked seen —
+          If Telegram is down, the process crashes, or the network drops mid-send, nothing is marked seen, and
           every job re-reports on the next scan. That's a deliberate at-least-once choice:
           in a job search, a duplicate notification costs three seconds; a silently dropped
           posting can cost the opportunity.</p>
@@ -499,7 +499,7 @@
         <div class="inner">
           <p>Adding a company takes one pasted careers URL. The scanner probes Greenhouse, Lever, and
           Ashby by slug, <strong>validates the token against the live board</strong> before trusting it, and caches
-          the result (failures too, with a 3-day retry TTL). Validation matters because names collide —
+          the result (failures too, with a 3-day retry TTL). Validation matters because names collide:
           "Orca" alone could be three different companies on three different ATSs.</p>
           <p>The same discipline applies across sources: when a job appears both on a company's own board
           and on a VC-network aggregator, <strong>the direct listing wins</strong> (matched on normalized
@@ -519,17 +519,17 @@
           board answers <code>304</code> and transfers nothing. The cache key includes a hash of the config,
           so editing a keyword forces a clean refetch. Greenhouse gets an extra trick: fetch the light
           job list first, then one ~12&nbsp;KB detail request per <em>matching</em> job only.</p>
-          <div class="bars" role="img" aria-label="Datadog transfer per scan: 5.1 megabytes before, 0.6 megabytes after — an 88 percent reduction">
+          <div class="bars" role="img" aria-label="Datadog transfer per scan: 5.1 megabytes before, 0.6 megabytes after, an 88 percent reduction">
             <div class="bar-row">
               <span class="lbl">before</span>
               <span class="bar-track"><span class="bar ghost" style="width:88%"></span><span class="bar-val">5.1 MB / scan</span></span>
             </div>
             <div class="bar-row">
               <span class="lbl">after</span>
-              <span class="bar-track"><span class="bar" style="width:10.4%"></span><span class="bar-val">0.6 MB — one board, −88%</span></span>
+              <span class="bar-track"><span class="bar" style="width:10.4%"></span><span class="bar-val">0.6 MB · one board, −88%</span></span>
             </div>
           </div>
-          <p style="margin-bottom:0">Result: a warm scan of all 53 boards finishes in ~4 seconds.</p>
+          <p style="margin-bottom:0">Result: a full scheduled run over all 68 boards, LLM scoring and Telegram delivery included, takes about two minutes on a 1 GB cloud VM.</p>
         </div>
       </details>
 
@@ -541,14 +541,14 @@
     <p class="eyebrow">By the numbers</p>
     <h2>Real numbers, from the running system</h2>
     <div class="stats">
-      <div class="stat"><div class="n" id="s-companies">53</div><div class="l">companies tracked</div></div>
-      <div class="stat"><div class="n">7</div><div class="l">ATS adapters</div></div>
-      <div class="stat"><div class="n" id="s-jobs">4,300<small>+</small></div><div class="l">postings / scan</div></div>
-      <div class="stat"><div class="n" id="s-warm">~4<small> s</small></div><div class="l">warm scan</div></div>
+      <div class="stat"><div class="n" id="s-companies">68</div><div class="l">companies tracked</div></div>
+      <div class="stat"><div class="n">15</div><div class="l">ATS adapters</div></div>
+      <div class="stat"><div class="n" id="s-jobs">6,000<small>+</small></div><div class="l">postings / scan</div></div>
+      <div class="stat"><div class="n" id="s-warm">~130<small> s</small></div><div class="l">full scan</div></div>
       <div class="stat"><div class="n">2<small> / day</small></div><div class="l">scheduled scans</div></div>
-      <div class="stat"><div class="n">36</div><div class="l">offline tests</div></div>
+      <div class="stat"><div class="n">211</div><div class="l">offline tests</div></div>
     </div>
-    <p class="stats-meta" id="statsMeta"><span class="live-dot"></span><span id="statsNote">Snapshot from the July 2026 build. When hosted next to the scanner, this strip reads live values from stats.json.</span></p>
+    <p class="stats-meta" id="statsMeta"><span class="live-dot"></span><span id="statsNote">Snapshot from November 2026. Live values load from stats.json, written by the scanner.</span></p>
   </section>
 
   <!-- ================= HARD QUESTIONS ================= -->
@@ -558,30 +558,30 @@
     <div class="qa">
       <details class="q">
         <summary>Why not just scrape LinkedIn?</summary>
-        <p>LinkedIn is downstream — postings arrive there days late, and scraping it means fighting
+        <p>LinkedIn is downstream: postings arrive there days late, and scraping it means fighting
         bot detection while violating its terms. The ATS <em>is</em> the origin: first-party, structured
         JSON, published the moment the role opens. Upstream beats faster-downstream.</p>
       </details>
       <details class="q">
         <summary>Is calling these APIs actually allowed?</summary>
-        <p>They're public, unauthenticated endpoints built for careers-page embedding — the same calls
+        <p>They're public, unauthenticated endpoints built for careers-page embedding, the same calls
         your browser makes when you open the page. JobFinder is deliberately polite about it: one light
         request per company per scan (or a 0-byte 304), 1-second per-host spacing, backoff on 429,
         an honest User-Agent, twice a day. A scan is less load than one human visitor.</p>
       </details>
       <details class="q">
-        <summary>Why a local LLM instead of a hosted API?</summary>
-        <p>Job-search data is personal, and at this scale (~5 s per new match on an M-series Mac)
-        a local qwen2.5:14b via Ollama is free, private, and plenty accurate — it correctly buries an
-        "Product Marketing Manager" at 2/10 while ranking a technical Product Manager role 9/10.
-        The provider is a config switch: Anthropic-backed scoring with structured output is already
-        implemented for when scale or quality demands it.</p>
+        <summary>Why a hosted model instead of a local one?</summary>
+        <p>It started local: qwen2.5:14b via Ollama on my Mac, free and private. Once JobFinder moved
+        to an always-on 1 GB cloud VM there was no room for a local model, so scoring switched to
+        Claude Haiku, which was a config change rather than a rewrite, because every LLM call goes
+        through one function. It still buries a "Product Marketing Manager" at 2/10 while ranking a
+        technical Product Manager role 9/10. Local models remain supported for development.</p>
       </details>
       <details class="q">
         <summary>What breaks if Telegram is down?</summary>
         <p>Nothing is lost. State saves only after delivery succeeds, so an outage means the same jobs
         simply re-report on the next scheduled scan. The failure mode is a duplicate message,
-        never a missed posting — chosen deliberately, because the two costs aren't symmetric.</p>
+        never a missed posting. I chose that deliberately, because the two costs aren't symmetric.</p>
       </details>
     </div>
   </section>
@@ -607,11 +607,10 @@
   <!-- ================= FOOTER ================= -->
   <footer class="site">
     <div class="row">
-      <span><b style="color:var(--ink)">Guy</b> · <a href="mailto:Guyleibu@gmail.com">Guyleibu@gmail.com</a></span>
-      <!-- SWAP-ME: repo link when public → <a href="https://github.com/YOURHANDLE/jobfinder">source ↗</a> -->
-      <span class="dim">Python · requests · Ollama · Telegram Bot API · Streamlit</span>
+      <span><b style="color:var(--ink)">Guy Leibu</b> · <a href="mailto:Guyleibu@gmail.com">Guyleibu@gmail.com</a></span>
+      <span class="dim">Python · requests · Claude API · Telegram Bot API · Streamlit</span>
     </div>
-    <p class="tag-line">Built July 2026, during a live job search — this tool found the interviews this page was made for.</p>
+    <p class="tag-line">Built July 2026, during a live job search. This tool found the interviews this page was made for.</p>
   </footer>
 
 </div>
@@ -677,7 +676,7 @@
 
   /* [html, delay-before-ms] */
   var LINES = [
-    [dim("JobFinder v3 · 53 companies · 7 ATS adapters · 4 workers · per-host 1s spacing"), 420],
+    [dim("JobFinder · 68 boards · 15 ATS adapters · 4 workers · per-host 1s spacing"), 420],
     ["", 60],
     [board("Wiz", "greenhouse", ok("304") + dim(" unchanged · skipped · 0 B")), 220],
     [board("MongoDB", "greenhouse", ok("304") + dim(" unchanged · skipped · 0 B")), 90],
@@ -689,12 +688,12 @@
     [board("NVIDIA", "workday", cyan("200") + " · 231 IL jobs · " + amber("1 match")), 430],
     [board("Israel VC Forum", "getro", cyan("200") + " · 1,427 jobs " + dim("· aggregated network board")), 460],
     [board("TechAviv", "consider", cyan("200") + " · 1,175 jobs " + dim("· aggregated network board")), 430],
-    [dim("  … 43 more boards") + "            " + ok("41× 304") + dim(" · zero bytes transferred"), 350],
+    [dim("  … 58 more boards") + "            " + ok("most 304") + dim(" · zero bytes transferred"), 350],
     ["", 120],
     ["  " + hd("dedupe") + "   " + dim("direct listings win over aggregator copies · 2 collapsed"), 260],
     ["  " + hd("enrich") + "   " + dim("descriptions fetched for matching aggregated jobs · cached forever"), 240],
     ["", 120],
-    ["  " + hd("scoring 5 new matches") + dim(" · local LLM · qwen2.5:14b @ 127.0.0.1:11434"), 550],
+    ["  " + hd("scoring 5 new matches") + dim(" · Claude Haiku"), 550],
     ["", 100],
     [dim("  #  LLM   ROLE                            COMPANY      NOTES"), 240],
     ["  1  " + amber("9/10") + "  Product Manager, AI Platform    Snowflake    " + dim("data platform + GenAI, B2B"), 360],
@@ -703,8 +702,8 @@
     ["  4  " + amber("8/10") + "  Senior Product Manager          Wiz          " + ok("referral on file → ranked first"), 340],
     ["  5  " + dim("2/10  Product Marketing Manager       (buried)     go-to-market, not product · correctly filtered"), 320],
     ["", 140],
-    ["  digest → Telegram " + ok("✓") + "   " + dim("state saved after delivery — nothing marked seen until it arrived"), 420],
-    ["  " + hd("done in 4.1 s") + dim(" · warm scan · 49 of 53 boards cost zero bytes"), 300]
+    ["  digest → Telegram " + ok("✓") + "   " + dim("state saved after delivery: nothing marked seen until it arrived"), 420],
+    ["  " + hd("done in ~2 min") + dim(" · scoring + delivery included · unchanged boards cost zero bytes"), 300]
   ];
 
   var timers = [];

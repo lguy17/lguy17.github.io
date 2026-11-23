@@ -11,7 +11,7 @@
   /* ============================================================
      Structure modeled on a dark single-page portfolio:
      header / hero+mockup / full-bleed ticker band / work cards /
-     about / footer — rendered in the JobFinder ember palette.
+     about / footer, rendered in the JobFinder ember palette.
      ============================================================ */
   :root {
     --bg:      #0E0B0A;
@@ -365,7 +365,7 @@
               <span class="meta">10:00</span>
             </div>
             <div class="msg bot">
-              <span class="check">⭐ referral on file</span> — <span class="role">Senior Product Manager</span> · Wiz · Tel Aviv <span class="score">8/10</span><br>
+              <span class="check">⭐ referral on file</span> · <span class="role">Senior Product Manager</span> · Wiz · Tel Aviv <span class="score">8/10</span><br>
               <span class="dim">+3 more new: MongoDB 9/10 · monday.com 8/10 · 1 buried at 2/10</span>
               <span class="meta">10:00</span>
             </div>
@@ -374,16 +374,16 @@
             </div>
             <div class="msg typing" id="typing" aria-hidden="true"><i></i><i></i><i></i></div>
             <div class="msg bot">
-              "Orca" could be three companies — probing ATS providers…<br>
+              "Orca" could be three companies. Probing ATS providers…<br>
               <span class="check">✓</span> validated <span class="score">greenhouse:orcasecurity</span> against the live board<br>
-              Orca Security added — scanning from tonight's 22:00 run.
+              Orca Security added, scanning from tonight's 22:00 run.
               <span class="meta">10:01</span>
             </div>
             <div class="msg user">/check wiz
               <span class="meta">10:02 <span class="ok">✓✓</span></span>
             </div>
             <div class="msg bot">
-              Live fetch, cache bypassed: 2 matching roles at Wiz —<br>
+              Live fetch, cache bypassed: 2 matching roles at Wiz:<br>
               <span class="role">Senior Product Manager</span> <span class="dim">· tracker: applied 3 d ago</span><br>
               <span class="role">Product Manager, DSPM</span> <span class="dim">· NEW</span> <span class="score">8/10</span>
               <span class="meta">10:02</span>
@@ -405,14 +405,14 @@
           <div class="m-term"><pre><span class="dm">guy@mac %</span> python job_scanner.py
 Wiz         <span class="ok">304</span> <span class="dm">· 0 B</span>   Datadog <span class="cy">200</span> <span class="dm">· 1,204 jobs</span> <span class="hot">3 match</span>
 Snowflake   <span class="cy">200</span> <span class="dm">· 418 jobs</span> <span class="hot">2 match</span>
-<span class="dm">… 48 more boards</span>       <span class="ok">46× 304</span> <span class="dm">· zero bytes</span>
-<span class="hot">done in 4.1 s</span></pre></div>
+<span class="dm">… 65 more boards</span>       <span class="ok">most 304</span> <span class="dm">· zero bytes</span>
+<span class="hot">done in ~2 min · scoring included</span></pre></div>
         </div>
-        <h3>JobFinder — the scanner</h3>
-        <p>Reads 53 company career boards straight from their ATS public APIs, filters for
+        <h3>JobFinder: the scanner</h3>
+        <p>Reads 68 career boards straight from their ATS public APIs, filters for
            role + Israel fit, and reports only what's new. Unchanged boards revalidate by
            ETag and cost zero bytes.</p>
-        <div class="tags"><span class="tag">Python</span><span class="tag">7 ATS adapters</span><span class="tag">HTTP caching</span></div>
+        <div class="tags"><span class="tag">Python</span><span class="tag">15 ATS adapters</span><span class="tag">HTTP caching</span></div>
       </div>
 
       <div class="card reveal">
@@ -420,15 +420,15 @@ Snowflake   <span class="cy">200</span> <span class="dm">· 418 jobs</span> <spa
           <div class="m-chat">
             <span class="b">🔥 Product Manager, AI Platform · Snowflake · TLV · <span class="g">9/10</span></span>
             <span class="u">/check wiz</span>
-            <span class="b">2 matching roles — one applied 3 d ago, one NEW <span class="g">8/10</span></span>
+            <span class="b">2 matching roles: one applied 3 d ago, one NEW <span class="g">8/10</span></span>
             <span class="u">/add orca</span>
-            <span class="b">✓ greenhouse:orcasecurity validated — scanning tonight</span>
+            <span class="b">✓ greenhouse:orcasecurity validated, scanning tonight</span>
           </div>
         </div>
         <h3>The Telegram bot</h3>
         <p>A two-way bot, not a feed: <code style="font-family:var(--mono)">/scan</code> on demand,
            <code style="font-family:var(--mono)">/check</code> any board live,
-           <code style="font-family:var(--mono)">/add</code> resolves a company's ATS from its name —
+           <code style="font-family:var(--mono)">/add</code> resolves a company's ATS from its name,
            with collision handling. Digests land hours after posting, not days.</p>
         <div class="tags"><span class="tag">Telegram Bot API</span><span class="tag">long-polling</span><span class="tag">always-on service</span></div>
       </div>
@@ -440,14 +440,14 @@ Snowflake   <span class="cy">200</span> <span class="dm">· 418 jobs</span> <spa
             <div class="row"><span class="n">9/10</span><span class="bar" style="width:82%"></span></div>
             <div class="row"><span class="n">8/10</span><span class="bar" style="width:70%"></span></div>
             <div class="row low"><span class="n">2/10</span><span class="bar" style="width:16%"></span></div>
-            <div class="row" style="font-size:10.5px;color:var(--ink-3)">local model · reasoning + red flags on every match</div>
+            <div class="row" style="font-size:10.5px;color:var(--ink-3)">LLM · reasoning + red flags on every match</div>
           </div>
         </div>
         <h3>Local LLM fit scoring</h3>
-        <p>Every new match is scored 1–10 with reasoning and red flags by a model running on
-           my own machine — free and private. 9/10s float to the top; a "Product Marketing
+        <p>Every new match is scored 1-10 with reasoning and red flags by Claude Haiku, running
+           twice a day on a small cloud server. 9/10s float to the top; a "Product Marketing
            Manager" that only shares the words gets buried at 2/10.</p>
-        <div class="tags"><span class="tag">Ollama</span><span class="tag">qwen2.5:14b</span><span class="tag">prompt + eval design</span></div>
+        <div class="tags"><span class="tag">Claude API</span><span class="tag">provider-swappable</span><span class="tag">prompt + eval design</span></div>
       </div>
 
       <div class="card reveal">
@@ -462,7 +462,7 @@ Snowflake   <span class="cy">200</span> <span class="dm">· 418 jobs</span> <spa
         <h3>Tracker &amp; dashboard</h3>
         <p>An application pipeline that fills itself: new matches auto-enter a tracker with
            follow-up nudges after 7 quiet days, and a Streamlit dashboard edits the same
-           flat files the CLI and bot use — everything stays in sync.</p>
+           flat files the CLI and bot use, so everything stays in sync.</p>
         <div class="tags"><span class="tag">Streamlit</span><span class="tag">pandas</span><span class="tag">zero-database design</span></div>
       </div>
 
@@ -479,13 +479,17 @@ Snowflake   <span class="cy">200</span> <span class="dm">· 418 jobs</span> <spa
       <div>
         <h2 class="section-title" data-scramble>A little more about me.</h2>
         <p class="about-copy">
-          I'm a <strong>product manager</strong> who starts with the customer: discovery, demos and
-          POCs that become prioritized requirements and a roadmap engineering can ship. At SAP Labs
-          I owned an end-to-end analytics product that became R&amp;D's source of truth and cut manual
-          reporting time by 85%. Today, at McKinsey (Iguazio), I work with enterprise clients on
-          GenAI and AI-agent use cases. Technical enough to go deep with engineers on
-          <strong>Python, Kubernetes, cloud, SQL and LLM tooling</strong>, and JobFinder is how I
-          practice the craft: a product I scoped, built and use every day.
+          <strong>I do my best work where the problem is still messy and nobody has written the spec yet.</strong>
+          I'm a product manager who listens first, in discovery calls, demos and support tickets,
+          then turns what I hear into clear requirements, a roadmap engineering believes in, and a
+          product people actually use. I measure success in outcomes, not in features shipped.
+        </p>
+        <p class="about-copy">
+          I hold myself to a simple standard: finish what I start, and finish it well. I learned ownership leading
+          teams as an officer, where "almost done" doesn't count, and I bring the same standard to
+          every product I touch. I'm technical enough to go deep with engineers on
+          <strong>Python, Kubernetes, cloud, SQL and LLM tooling</strong>, and when I want to really
+          understand a problem, I build it myself. JobFinder started exactly that way.
         </p>
         <a class="resume-link" href="assets/Guy_Leibu_CV_Product_Manager_2026.pdf" target="_blank" rel="noopener">View CV</a>
       </div>
